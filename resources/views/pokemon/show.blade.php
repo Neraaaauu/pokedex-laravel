@@ -1,29 +1,154 @@
-{{-- heredamos el layout principal con la barra y bootstrap --}}
 @extends('layouts.app')
 
-{{-- abrimos la seccion del contenido para la vista de detalle --}}
 @section('content')
-{{-- centramos la tarjeta en la pantalla con una columna de tamano 6 --}}
 <div class="row justify-content-center">
-    <div class="col-md-6 text-center">
-        {{-- tarjeta que contiene los detalles del pokemon --}}
-        <div class="card shadow-sm border p-4">
-            {{-- mostramos el nombre que llego desde la url --}}
-            <h2 class="card-title text-capitalize fw-bold mb-4">{{ $name }}</h2>
-
-            {{-- recuadro gris como placeholder de la imagen para el objetivo 1 --}}
-            <div class="bg-body-secondary border rounded d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 200px; height: 200px;">
-                <span class="text-muted fw-semibold">Placeholder Imagen</span>
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0 bg-white overflow-hidden">
+            <div class="card-header bg-dark text-white py-3 px-4 d-flex justify-content-between align-items-center">
+                <h2 class="h4 mb-0 fw-bold text-capitalize">
+                    {{ $pokemon['name'] }}
+                </h2>
+                <span class="badge bg-secondary fs-6">
+                    #{{ str_pad($pokemon['id'], 3, '0', STR_PAD_LEFT) }}
+                </span>
             </div>
 
-            <div>
-                {{-- boton para regresar a la lista de pokemon --}}
-                <a href="{{ route('pokemon.index') }}" class="btn btn-secondary">
-                    Volver a Pokémon
-                </a>
+            <div class="card-body p-4 p-md-5">
+                <div class="row align-items-center mb-4">
+                    <!-- Imagen del Pokémon -->
+                    <div class="col-md-5 text-center mb-4 mb-md-0">
+                        <div class="bg-light border rounded p-4 d-flex align-items-center justify-content-center mx-auto" style="min-height: 250px;">
+                            <img 
+                                src="{{ $pokemon['sprite'] }}" 
+                                alt="{{ $pokemon['name'] }}" 
+                                class="img-fluid" 
+                                style="max-height: 220px; object-fit: contain;"
+                            >
+                        </div>
+                        @if ($pokemon['sprite_pixel'] && $pokemon['sprite'] !== $pokemon['sprite_pixel'])
+                            <div class="mt-2 text-muted small">
+                                <span>Sprite clásico:</span>
+                                <img src="{{ $pokemon['sprite_pixel'] }}" alt="pixel" style="width: 48px; height: 48px;">
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Datos y Tipos -->
+                    <div class="col-md-7">
+                        <h4 class="fw-bold mb-3">Información General</h4>
+                        
+                        <div class="mb-3">
+                            <span class="text-muted d-block small mb-1">Tipos elementales:</span>
+                            <div class="d-flex gap-2">
+                                @foreach ($pokemon['types'] as $type)
+                                    <span class="badge badge-type-{{ strtolower($type) }} px-3 py-2 text-uppercase fs-6">
+                                        {{ $type }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <span class="text-muted small d-block">Altura</span>
+                                    <strong>{{ $pokemon['height'] }} m</strong>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <span class="text-muted small d-block">Peso</span>
+                                    <strong>{{ $pokemon['weight'] }} kg</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Estadísticas Base (HP, Ataque, Defensa obligatorias) -->
+                <div>
+                    <h4 class="fw-bold mb-3">Estadísticas Base</h4>
+
+                    <!-- HP -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Puntos de Salud (HP)</span>
+                            <span class="fw-bold">{{ $pokemon['stats']['hp'] }}</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div 
+                                class="progress-bar bg-success" 
+                                role="progressbar" 
+                                style="width: {{ min(100, ($pokemon['stats']['hp'] / 255) * 100) }}%;"
+                                aria-valuenow="{{ $pokemon['stats']['hp'] }}" 
+                                aria-valuemin="0" 
+                                aria-valuemax="255">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attack -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Ataque (Attack)</span>
+                            <span class="fw-bold">{{ $pokemon['stats']['attack'] }}</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div 
+                                class="progress-bar bg-danger" 
+                                role="progressbar" 
+                                style="width: {{ min(100, ($pokemon['stats']['attack'] / 255) * 100) }}%;"
+                                aria-valuenow="{{ $pokemon['stats']['attack'] }}" 
+                                aria-valuemin="0" 
+                                aria-valuemax="255">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Defense -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Defensa (Defense)</span>
+                            <span class="fw-bold">{{ $pokemon['stats']['defense'] }}</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div 
+                                class="progress-bar bg-primary" 
+                                role="progressbar" 
+                                style="width: {{ min(100, ($pokemon['stats']['defense'] / 255) * 100) }}%;"
+                                aria-valuenow="{{ $pokemon['stats']['defense'] }}" 
+                                aria-valuemin="0" 
+                                aria-valuemax="255">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas secundarias -->
+                    <div class="row g-2 mt-2 pt-2 border-top">
+                        <div class="col-4 text-center">
+                            <span class="text-muted small d-block">Atq. Especial</span>
+                            <strong class="fs-6">{{ $pokemon['stats']['special_attack'] }}</strong>
+                        </div>
+                        <div class="col-4 text-center">
+                            <span class="text-muted small d-block">Def. Especial</span>
+                            <strong class="fs-6">{{ $pokemon['stats']['special_defense'] }}</strong>
+                        </div>
+                        <div class="col-4 text-center">
+                            <span class="text-muted small d-block">Velocidad</span>
+                            <strong class="fs-6">{{ $pokemon['stats']['speed'] }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <a href="{{ route('pokemon.index') }}" class="btn btn-secondary px-4">
+                        Volver a Pokémon
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{{-- cerramos la seccion del contenido --}}
 @endsection

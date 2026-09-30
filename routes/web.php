@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // retornamos la vista home que esta en resources views
     return view('home');
-// le ponemos un nombre a la ruta para poder enlazarla facilmente
+    // le ponemos un nombre a la ruta para poder enlazarla facilmente
 })->name('home');
 
 // ruta que muestra la lista de pokemon llamando al metodo index del controlador
@@ -17,3 +17,8 @@ Route::get('/pokemon', [PokemonController::class, 'index'])->name('pokemon.index
 
 // ruta con parametro dinamico name que manda el nombre al metodo show del controlador
 Route::get('/pokemon/{name}', [PokemonController::class, 'show'])->name('pokemon.show');
+
+// ruta de informacion sobre el proyecto y el equipo
+Route::get('/about', function () {
+    return view('about');
+})->name('about');

@@ -1,27 +1,43 @@
-{{-- heredamos toda la estructura del layout principal --}}
 @extends('layouts.app')
 
-{{-- definimos la seccion que se va a meter en el yield del layout --}}
 @section('content')
-{{-- centramos el contenido con las clases de bootstrap --}}
 <div class="row justify-content-center">
-    <div class="col-md-8 text-center">
-        {{-- tarjeta blanca con sombra suave y padding --}}
-        <div class="card p-5 shadow-sm border-0">
-            {{-- titulo principal de la pantalla de bienvenida --}}
-            <h1 class="display-6 fw-bold mb-3">Pokédex Web</h1>
-            {{-- texto descriptivo para el usuario --}}
-            <p class="text-muted mb-4">
-                Bienvenido a la Pokédex. Aquí puedes consultar el listado de Pokémon y ver sus detalles.
+    <div class="col-md-9 text-center">
+        <div class="card p-5 shadow-sm border-0 bg-white">
+            <h1 class="display-5 fw-bold mb-3 text-dark">Pokédex Web</h1>
+            <p class="lead text-muted mb-4">
+                Aplicación web desarrollada en Laravel para consultar información oficial de Pokémon a través de PokéAPI.
             </p>
-            <div>
-                {{-- boton que te manda directo a la ruta del listado de pokemon --}}
+            <div class="d-flex justify-content-center gap-3 mb-5">
                 <a href="{{ route('pokemon.index') }}" class="btn btn-primary btn-lg px-4">
-                    Ver Pokémon
+                    Explorar Pokémon
                 </a>
+                <a href="{{ route('about') }}" class="btn btn-outline-secondary btn-lg px-4">
+                    Acerca de
+                </a>
+            </div>
+
+            <div class="row text-start g-4 pt-3 border-top">
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Catálogo Oficial</h5>
+                    <p class="text-muted small">
+                        Visualización de Pokémon con sus números de registro oficial e imágenes cargadas dinámicamente desde PokéAPI.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Búsqueda Rápida</h5>
+                    <p class="text-muted small">
+                        Buscador integrado con validación para consultar cualquier Pokémon por su nombre directamente en la API.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Detalle y Estadísticas</h5>
+                    <p class="text-muted small">
+                        Ficha completa con tipos elementales, peso, altura y estadísticas base de combate (HP, Ataque y Defensa).
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{{-- cerramos la seccion del contenido --}}
 @endsection

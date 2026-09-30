@@ -24,11 +24,13 @@
 - [x] Ruta y vista `/about` creada con el nombre del equipo, materia y objetivo del proyecto, accesible desde el navbar.
 
 ### Objetivo 3: Consumo de PokéAPI y Manejo de Errores
-- [x] Consumo real del endpoint `https://pokeapi.co/api/v2/pokemon?limit=20` en `/pokemon`.
-- [x] Carga de sprites de cada Pokémon en las tarjetas del catálogo.
-- [x] Consumo del endpoint `https://pokeapi.co/api/v2/pokemon/{name}` en el detalle (`/pokemon/{name}`).
-- [x] Detalle completo mostrando: nombre, imagen (artwork y sprite), tipos elementales con etiquetas de color y 3 estadísticas base (HP, Ataque, Defensa con barras visuales).
-- [x] Manejo de errores implementado: si el Pokémon no existe o falla la API, se muestra una vista amigable sin romper la aplicación ni mostrar pantallas de depuración del framework.
+- [x] Consumo real del endpoint `https://pokeapi.co/api/v2/pokemon?limit=20` en `/pokemon` (exactamente los 20 requeridos de Kanto).
+- [x] Interfaz 100% Pixel Art estilo folder/carpeta clásico de la serie animada de Pokémon.
+- [x] Sprites oficiales de 3ra Generación (Pokémon Edición Rojo Fuego / Verde Hoja) con renderizado nítido `image-rendering: pixelated`.
+- [x] Ficha de detalle interactiva con panel izquierdo (selector de los 20 Pokémon) y panel derecho con la información.
+- [x] Descripciones oficiales EXCLUSIVAMENTE en español extraídas de la Pokédex de Rojo Fuego.
+- [x] Estadísticas base de combate (PS, Ataque y Defensa) con barras de progreso segmentadas estilo retro.
+- [x] Manejo de errores implementado: si el Pokémon no existe o falla la API, se muestra una vista amigable sin romper la aplicación.
 
 ---
 

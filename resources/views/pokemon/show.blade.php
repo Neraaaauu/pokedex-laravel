@@ -4,11 +4,11 @@
 <div class="row justify-content-center">
     <div class="col-lg-8">
         <div class="card shadow-sm border-0 bg-white overflow-hidden">
-            <div class="card-header bg-dark text-white py-3 px-4 d-flex justify-content-between align-items-center">
+            <div class="card-header bg-danger text-white py-3 px-4 d-flex justify-content-between align-items-center">
                 <h2 class="h4 mb-0 fw-bold text-capitalize">
                     {{ $pokemon['name'] }}
                 </h2>
-                <span class="badge bg-secondary fs-6">
+                <span class="badge bg-dark fs-6">
                     #{{ str_pad($pokemon['id'], 3, '0', STR_PAD_LEFT) }}
                 </span>
             </div>
@@ -25,18 +25,22 @@
                                 style="max-height: 220px; object-fit: contain;"
                             >
                         </div>
-                        @if ($pokemon['sprite_pixel'] && $pokemon['sprite'] !== $pokemon['sprite_pixel'])
+                        @if (!empty($pokemon['sprite_pixel']) && $pokemon['sprite'] !== $pokemon['sprite_pixel'])
                             <div class="mt-2 text-muted small">
-                                <span>Sprite clásico:</span>
-                                <img src="{{ $pokemon['sprite_pixel'] }}" alt="pixel" style="width: 48px; height: 48px;">
+                                <span>Sprite de batalla:</span>
+                                <img src="{{ $pokemon['sprite_pixel'] }}" alt="pixel" style="width: 48px; height: 48px; image-rendering: pixelated;">
                             </div>
                         @endif
                     </div>
 
                     <!-- Datos y Tipos -->
                     <div class="col-md-7">
-                        <h4 class="fw-bold mb-3">Información General</h4>
-                        
+                        @if (!empty($pokemon['genus']))
+                            <div class="text-muted fw-bold text-uppercase small mb-2">
+                                {{ $pokemon['genus'] }}
+                            </div>
+                        @endif
+
                         <div class="mb-3">
                             <span class="text-muted d-block small mb-1">Tipos elementales:</span>
                             <div class="d-flex gap-2">
@@ -65,9 +69,24 @@
                     </div>
                 </div>
 
+                <!-- Entrada de la Pokédex: Edición Rojo Fuego -->
+                @if (!empty($pokemon['description_firered']))
+                    <div class="p-3 mb-4 rounded border" style="background-color: #f8fafc; border-left: 4px solid #dc2626 !important;">
+                        <span class="badge bg-danger text-uppercase mb-2">Edición Rojo Fuego</span>
+                        <p class="mb-1 font-monospace text-dark" style="font-size: 0.95rem;">
+                            {{ $pokemon['description_firered'] }}
+                        </p>
+                        @if (!empty($pokemon['description_es']))
+                            <small class="text-muted d-block mt-2 pt-2 border-top">
+                                {{ $pokemon['description_es'] }}
+                            </small>
+                        @endif
+                    </div>
+                @endif
+
                 <hr class="my-4">
 
-                <!-- Estadísticas Base (HP, Ataque, Defensa obligatorias) -->
+                <!-- Estadísticas Base -->
                 <div>
                     <h4 class="fw-bold mb-3">Estadísticas Base</h4>
 
@@ -144,7 +163,7 @@
 
                 <div class="mt-5 text-center">
                     <a href="{{ route('pokemon.index') }}" class="btn btn-secondary px-4">
-                        Volver a Pokémon
+                        Volver a la Pokédex
                     </a>
                 </div>
             </div>

@@ -6,6 +6,9 @@
     <title>{{ config('app.name', 'Pokédex') }} - Unidad III</title>
     <!-- Bootstrap 5.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Pokédex Kanto Custom Style -->
+    <link href="{{ asset('css/pokedex.css') }}" rel="stylesheet">
+
     <style>
         .badge-type-grass { background-color: #78c850; color: #fff; }
         .badge-type-fire { background-color: #f08030; color: #fff; }

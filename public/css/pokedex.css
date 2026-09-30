@@ -1,0 +1,683 @@
+/* ========================================================
+   POKÉDEX VIRTUAL KANTO (PIXEL ART RETRO GBA / ROJO FUEGO)
+   Estética 100% Pixel Art inspirada en Pokémon Rojo Fuego
+   y la clásica Pokédex de la serie de televisión
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --pixel-red: #c81828;
+    --pixel-dark-red: #800810;
+    --pixel-light-red: #f03040;
+    --pixel-black: #111111;
+    --pixel-white: #f8f8f8;
+    --pixel-grey: #c8c8c8;
+    --pixel-dark-grey: #686868;
+    --pixel-lcd-bg: #1c2820;
+    --pixel-lcd-green: #2b4832;
+    --pixel-lcd-text: #78f888;
+    --pixel-blue: #2878d8;
+    --pixel-dark-blue: #184898;
+    --pixel-font: 'Press Start 2P', 'Courier New', monospace;
+}
+
+/* Base del wrapper */
+.pokedex-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px;
+    font-family: var(--pixel-font);
+    letter-spacing: -0.5px;
+}
+
+/* ========================================================
+   CONTENEDOR DE LA POKÉDEX FOLDER (PIXEL ART)
+   ======================================================== */
+.pokedex-device {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background: var(--pixel-red);
+    border: 6px solid var(--pixel-black);
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.85);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+@media (max-width: 991.98px) {
+    .pokedex-device {
+        flex-direction: column;
+    }
+}
+
+/* ========================================================
+   PANEL IZQUIERDO (SELECTOR DE POKÉMON)
+   ======================================================== */
+.pokedex-panel-left {
+    flex: 1;
+    background: var(--pixel-red);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-right: 6px solid var(--pixel-dark-red);
+}
+
+@media (max-width: 991.98px) {
+    .pokedex-panel-left {
+        border-right: none;
+        border-bottom: 6px solid var(--pixel-dark-red);
+    }
+}
+
+/* Luces pixel art superiores */
+.pokedex-header-lights {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 6px solid var(--pixel-dark-red);
+}
+
+/* Sensor cámara pixel art */
+.camera-lens {
+    width: 60px;
+    height: 60px;
+    background: #48c8f0;
+    border: 6px solid var(--pixel-white);
+    box-shadow: 
+        0 0 0 4px var(--pixel-black),
+        inset -6px -6px 0px #1868b8,
+        inset 6px 6px 0px #a0f0ff;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.camera-lens::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    box-shadow: 4px 4px 0px #ffffff;
+}
+
+.camera-lens.active-pulse {
+    animation: pixelPulse 0.4s steps(2) infinite;
+}
+
+@keyframes pixelPulse {
+    0% { background: #48c8f0; }
+    50% { background: #ffffff; box-shadow: 0 0 0 4px var(--pixel-black), 0 0 12px #a0f0ff; }
+    100% { background: #48c8f0; }
+}
+
+/* Luces LED pixel art */
+.led-lights {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.led {
+    width: 20px;
+    height: 20px;
+    border: 4px solid var(--pixel-black);
+    position: relative;
+    box-shadow: inset -3px -3px 0px rgba(0, 0, 0, 0.4);
+}
+
+.led::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 4px;
+    height: 4px;
+    background: #ffffff;
+}
+
+.led-red { background: #f02020; }
+.led-yellow { background: #f8c800; }
+.led-green { background: #38b038; }
+
+/* Marco de la pantalla izquierda */
+.pokedex-screen-frame {
+    background: #d8d8d8;
+    border: 6px solid var(--pixel-black);
+    padding: 14px;
+    box-shadow: inset 4px 4px 0px #f8f8f8, inset -4px -4px 0px #888888, 4px 4px 0px rgba(0,0,0,0.3);
+}
+
+.screen-frame-dots {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.screen-frame-dot {
+    width: 10px;
+    height: 10px;
+    background: #c81828;
+    border: 2px solid var(--pixel-black);
+}
+
+/* Pantalla interna izquierda (terminal pixel art) */
+.pokedex-inner-screen {
+    background: #081018;
+    border: 4px solid var(--pixel-black);
+    padding: 10px;
+    box-shadow: inset 3px 3px 0px #000;
+    background-image: linear-gradient(rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.35) 50%);
+    background-size: 100% 4px;
+}
+
+/* Buscador en pantalla */
+.pokedex-search-box {
+    margin-bottom: 10px;
+}
+
+.pokedex-search-input {
+    background: #000000;
+    border: 3px solid #384858;
+    color: #78f888;
+    font-family: var(--pixel-font);
+    font-size: 0.65rem;
+    padding: 8px 10px;
+    width: 100%;
+    outline: none;
+    box-shadow: inset 2px 2px 0px #000;
+    text-transform: uppercase;
+}
+
+.pokedex-search-input:focus {
+    border-color: #f8c800;
+    color: #ffffff;
+}
+
+.pokedex-search-btn {
+    font-family: var(--pixel-font);
+    font-size: 0.65rem;
+    background: #2878d8;
+    border: 3px solid var(--pixel-black);
+    box-shadow: 2px 2px 0px #000;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.pokedex-search-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+/* Lista seleccionable de los 20 Pokémon */
+.pokemon-select-list {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 4px;
+}
+
+.pokemon-select-list::-webkit-scrollbar {
+    width: 10px;
+}
+.pokemon-select-list::-webkit-scrollbar-track {
+    background: #081018;
+    border-left: 2px solid #202830;
+}
+.pokemon-select-list::-webkit-scrollbar-thumb {
+    background: #506070;
+    border: 2px solid var(--pixel-black);
+}
+
+.pokemon-select-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    background: #101c24;
+    border: 3px solid #203040;
+    color: #d8e0e8;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.65rem;
+}
+
+.pokemon-select-item:hover {
+    background: #182838;
+    border-color: #48c8f0;
+    color: #ffffff;
+}
+
+.pokemon-select-item.active {
+    background: #183868;
+    border-color: #f8c800;
+    color: #f8f8f8;
+    box-shadow: inset 2px 2px 0px #48c8f0, 2px 2px 0px #000;
+}
+
+.pokemon-item-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pokemon-item-sprite {
+    width: 44px;
+    height: 44px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    object-fit: contain;
+    background: #081018;
+    border: 2px solid #203040;
+}
+
+.pokemon-item-number {
+    font-size: 0.6rem;
+    color: #88a0b8;
+}
+
+.pokemon-select-item.active .pokemon-item-number {
+    color: #f8c800;
+}
+
+.pokemon-item-name {
+    text-transform: uppercase;
+    font-size: 0.68rem;
+}
+
+.pokemon-item-ver-btn {
+    font-family: var(--pixel-font);
+    font-size: 0.58rem;
+    background: #2878d8;
+    border: 2px solid var(--pixel-black);
+    box-shadow: 2px 2px 0px #000;
+    color: #ffffff;
+    padding: 4px 8px;
+    text-transform: uppercase;
+}
+
+.pokemon-select-item.active .pokemon-item-ver-btn {
+    background: #f8c800;
+    color: #000000;
+}
+
+/* Controles físicos inferiores pixel art */
+.pokedex-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding: 4px 6px;
+}
+
+.action-circle-btn {
+    width: 44px;
+    height: 44px;
+    background: #202020;
+    border: 4px solid var(--pixel-black);
+    box-shadow: inset 4px 4px 0px #505050, 4px 4px 0px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.action-pill-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.pill-btn {
+    width: 44px;
+    height: 12px;
+    border: 3px solid var(--pixel-black);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+}
+
+.pill-red { background: #d02030; }
+.pill-blue { background: #2060c0; }
+
+/* D-Pad Pixel Art */
+.dpad {
+    position: relative;
+    width: 76px;
+    height: 76px;
+}
+
+.dpad-cross {
+    position: absolute;
+    background: #282828;
+    border: 4px solid var(--pixel-black);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+}
+
+.dpad-up-down {
+    width: 26px;
+    height: 76px;
+    left: 25px;
+    top: 0;
+}
+
+.dpad-left-right {
+    width: 76px;
+    height: 26px;
+    left: 0;
+    top: 25px;
+}
+
+.dpad-center {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 25px;
+    top: 25px;
+    background: #282828;
+    border-radius: 50%;
+}
+
+/* ========================================================
+   BISAGRA CENTRAL PIXEL ART
+   ======================================================== */
+.pokedex-hinge {
+    width: 44px;
+    background: #a01020;
+    border-left: 4px solid var(--pixel-black);
+    border-right: 4px solid var(--pixel-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 16px 0;
+    box-shadow: inset 4px 0 0 #f03040, inset -4px 0 0 #600810;
+}
+
+.hinge-segment {
+    height: 10px;
+    background: var(--pixel-black);
+    border-top: 2px solid #500810;
+    border-bottom: 2px solid #f03040;
+}
+
+@media (max-width: 991.98px) {
+    .pokedex-hinge {
+        width: 100%;
+        height: 26px;
+        flex-direction: row;
+        border-left: none;
+        border-right: none;
+        border-top: 4px solid var(--pixel-black);
+        border-bottom: 4px solid var(--pixel-black);
+        padding: 0 16px;
+    }
+    .hinge-segment {
+        width: 10px;
+        height: 100%;
+    }
+}
+
+/* ========================================================
+   PANEL DERECHO: PANTALLA ROJO FUEGO (PIXEL ART)
+   ======================================================== */
+.pokedex-panel-right {
+    flex: 1.15;
+    background: var(--pixel-red);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    border-left: 6px solid var(--pixel-dark-red);
+}
+
+@media (max-width: 991.98px) {
+    .pokedex-panel-right {
+        border-left: none;
+        border-top: 6px solid var(--pixel-dark-red);
+    }
+}
+
+/* Pantalla superior derecha: Sprite e información técnica */
+.pokedex-info-screen {
+    background: #081018;
+    border: 6px solid var(--pixel-black);
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: inset 4px 4px 0px #000, 4px 4px 0px rgba(0,0,0,0.3);
+    background-image: linear-gradient(rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.35) 50%);
+    background-size: 100% 4px;
+}
+
+.pokemon-display-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #182838;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.pokemon-display-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: var(--pixel-font);
+}
+
+.pokemon-display-id {
+    font-size: 0.85rem;
+    color: #f8c800;
+    font-family: var(--pixel-font);
+}
+
+.pokemon-visual-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 575.98px) {
+    .pokemon-visual-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Contenedor del sprite de 3ra generación */
+.pokemon-artwork-container {
+    background: #182838;
+    border: 4px solid var(--pixel-black);
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: inset 3px 3px 0px #081018, 3px 3px 0px rgba(0,0,0,0.4);
+}
+
+.pokemon-artwork-img {
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    object-fit: contain;
+}
+
+.pokemon-meta-info {
+    flex: 1;
+}
+
+.pokemon-genus-badge {
+    color: #f8c800;
+    font-size: 0.62rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.pokemon-types-list {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.pixel-type-badge {
+    font-size: 0.58rem;
+    padding: 4px 6px;
+    border: 2px solid var(--pixel-black);
+    box-shadow: 2px 2px 0px #000;
+    font-family: var(--pixel-font);
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.pokemon-dimensions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    font-size: 0.6rem;
+}
+
+.dimension-box {
+    background: #101c24;
+    padding: 6px 8px;
+    border: 2px solid #203040;
+    color: #ffffff;
+}
+
+.dimension-box small {
+    color: #88a0b8;
+    display: block;
+    font-size: 0.52rem;
+    margin-bottom: 2px;
+}
+
+/* Pantalla verde LCD: Descripción 100% en español de Rojo Fuego */
+.firered-screen {
+    background: var(--pixel-lcd-green);
+    border: 6px solid var(--pixel-black);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: inset 4px 4px 0px #183020, 4px 4px 0px rgba(0,0,0,0.3);
+    color: var(--pixel-lcd-text);
+}
+
+.firered-screen-badge {
+    font-size: 0.58rem;
+    color: #f8f8f8;
+    background: #183020;
+    padding: 3px 6px;
+    border: 2px solid var(--pixel-black);
+    display: inline-block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.firered-text {
+    font-size: 0.68rem;
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 1px 1px 0px #102010;
+    font-family: var(--pixel-font);
+}
+
+/* Monitor de estadísticas de combate pixel art */
+.pokedex-stats-screen {
+    background: #081018;
+    border: 6px solid var(--pixel-black);
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    box-shadow: inset 3px 3px 0px #000;
+}
+
+.stats-title {
+    color: #f8c800;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.stat-row {
+    margin-bottom: 6px;
+}
+
+.stat-label-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.58rem;
+    color: #e0e8f0;
+    margin-bottom: 3px;
+}
+
+.stat-bar-container {
+    height: 8px;
+    background: #101c24;
+    border: 2px solid var(--pixel-black);
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+}
+
+.stat-fill-hp { background: #38b038; box-shadow: inset 0 -2px 0 #186818; }
+.stat-fill-attack { background: #f06020; box-shadow: inset 0 -2px 0 #902808; }
+.stat-fill-defense { background: #2878d8; box-shadow: inset 0 -2px 0 #104080; }
+
+.stat-secondary-grid {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.52rem;
+    color: #88a0b8;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 2px solid #182838;
+}
+
+.stat-secondary-grid strong {
+    color: #ffffff;
+}
+
+/* Teclado numérico pixel art (10 teclas azules) */
+.pokedex-keypad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: auto;
+}
+
+.keypad-key {
+    background: #2878d8;
+    height: 26px;
+    border: 3px solid var(--pixel-black);
+    box-shadow: inset 2px 2px 0px #68b0f8, inset -2px -2px 0px #104088, 2px 2px 0px #000;
+    cursor: pointer;
+}
+
+.keypad-key:active {
+    transform: translate(2px, 2px);
+    box-shadow: inset -2px -2px 0px #68b0f8, inset 2px 2px 0px #104088;
+}
+
+/* Colores Pixel Art para los tipos elementales */
+.badge-type-grass { background-color: #58a838; }
+.badge-type-fire { background-color: #f06020; }
+.badge-type-water { background-color: #3888d8; }
+.badge-type-bug { background-color: #889818; }
+.badge-type-normal { background-color: #989878; }
+.badge-type-poison { background-color: #903890; }
+.badge-type-electric { background-color: #e8b800; color: #000; }
+.badge-type-ground { background-color: #d0b050; color: #000; }
+.badge-type-fairy { background-color: #e088a0; color: #000; }
+.badge-type-fighting { background-color: #a82018; }
+.badge-type-psychic { background-color: #e84878; }
+.badge-type-rock { background-color: #a08828; }
+.badge-type-ghost { background-color: #604880; }
+.badge-type-ice { background-color: #70b8b8; color: #000; }
+.badge-type-dragon { background-color: #5828d8; }
+.badge-type-steel { background-color: #9898b0; color: #000; }
+.badge-type-flying { background-color: #8878d8; }

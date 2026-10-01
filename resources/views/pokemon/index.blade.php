@@ -170,7 +170,12 @@
 
             <!-- pantalla verde lcd: descripcion exclusivamente en espanol de rojo fuego -->
             <div class="firered-screen">
-                <span class="firered-screen-badge">DATOS POKÉDEX (ROJO FUEGO)</span>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="firered-screen-badge">DATOS POKÉDEX (ROJO FUEGO)</span>
+                    <span class="badge {{ !empty($activePokemon['from_local_db']) ? 'bg-success' : 'bg-primary' }} font-monospace" style="font-size: 0.6rem; letter-spacing: 0.5px;" id="displayDbBadge">
+                        {{ !empty($activePokemon['from_local_db']) ? '💾 BD LOCAL' : '🌐 POKEAPI' }}
+                    </span>
+                </div>
                 <p class="firered-text" id="displayPokemonDesc">
                     {{ $activePokemon['description'] }}
                 </p>
@@ -329,6 +334,13 @@
 
         // descripcion exclusivamente en espanol
         document.getElementById('displayPokemonDesc').textContent = p.description;
+
+        // indicador de origen de datos (BD Local / PokeAPI)
+        const dbBadge = document.getElementById('displayDbBadge');
+        if (dbBadge) {
+            dbBadge.textContent = p.from_local_db ? '💾 BD LOCAL' : '🌐 POKEAPI';
+            dbBadge.className = (p.from_local_db ? 'badge bg-success' : 'badge bg-primary') + ' font-monospace';
+        }
 
         // estadisticas base
         document.getElementById('displayHpVal').textContent = p.stats.hp;

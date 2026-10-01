@@ -32,6 +32,15 @@
 - [x] Estadísticas base de combate (PS, Ataque y Defensa) con barras de progreso segmentadas estilo retro.
 - [x] Manejo de errores implementado: si el Pokémon no existe o falla la API, se muestra una vista amigable sin romper la aplicación.
 
+### Requisito Especial: Base de Datos Local y Funcionamiento Offline (Sin Internet)
+- [x] Base de datos local configurada e integrada en Laravel.
+- [x] Migración `create_pokemon_table`: Tabla `pokemon` con campos de stats, tipos en JSON, sprites, medidas y descripciones.
+- [x] Modelo Eloquent `App\Models\Pokemon` con casting nativo y método `toFrontendArray()`.
+- [x] Seeder `PokemonSeeder`: Precarga los 20 Pokémon con datos completos de Rojo Fuego en español.
+- [x] Sprites guardados localmente en `public/images/sprites/` para renderizar imágenes aún sin conexión a internet.
+- [x] Estrategia Cache/Fallback: El controlador `PokemonController` consulta primero la BD local para máxima velocidad y autonomía offline. Si se consulta un Pokémon nuevo con internet, lo guarda en la BD local permanentemente.
+- [x] Indicador visual `💾 BD LOCAL` en pantalla para evidenciar en la demo el origen de los datos.
+
 ---
 
 ## 2. Respuestas a las Preguntas del Entregable

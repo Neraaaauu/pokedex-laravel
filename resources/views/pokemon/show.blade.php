@@ -45,8 +45,12 @@
                             <span class="text-muted d-block small mb-1">Tipos elementales:</span>
                             <div class="d-flex gap-2">
                                 @foreach ($pokemon['types'] as $type)
-                                    <span class="badge badge-type-{{ strtolower($type) }} px-3 py-2 text-uppercase fs-6">
-                                        {{ $type }}
+                                    @php
+                                        $typeKey = is_array($type) ? ($type['key'] ?? '') : $type;
+                                        $typeName = is_array($type) ? ($type['name'] ?? $typeKey) : $type;
+                                    @endphp
+                                    <span class="badge badge-type-{{ strtolower($typeKey) }} px-3 py-2 text-uppercase fs-6">
+                                        {{ $typeName }}
                                     </span>
                                 @endforeach
                             </div>
@@ -70,17 +74,20 @@
                 </div>
 
                 <!-- entrada de la pokedex: edicion rojo fuego -->
-                @if (!empty($pokemon['description_firered']))
+                @php
+                    $descText = $pokemon['description'] ?? $pokemon['description_firered'] ?? $pokemon['description_es'] ?? '';
+                @endphp
+                @if (!empty($descText))
                     <div class="p-3 mb-4 rounded border" style="background-color: #f8fafc; border-left: 4px solid #dc2626 !important;">
-                        <span class="badge bg-danger text-uppercase mb-2">Edición Rojo Fuego</span>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-danger text-uppercase">Edición Rojo Fuego</span>
+                            @if (!empty($pokemon['from_local_db']))
+                                <span class="badge bg-success">💾 Guardado en BD Local</span>
+                            @endif
+                        </div>
                         <p class="mb-1 font-monospace text-dark" style="font-size: 0.95rem;">
-                            {{ $pokemon['description_firered'] }}
+                            {{ $descText }}
                         </p>
-                        @if (!empty($pokemon['description_es']))
-                            <small class="text-muted d-block mt-2 pt-2 border-top">
-                                {{ $pokemon['description_es'] }}
-                            </small>
-                        @endif
                     </div>
                 @endif
 

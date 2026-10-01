@@ -3,7 +3,7 @@
 @section('content')
 <div class="pokedex-wrapper">
 
-    <!-- Mensaje de error de validación o búsqueda si aplica -->
+    <!-- mensaje de error de validacion o busqueda si aplica -->
     @if ($searchError)
         <div class="alert alert-danger alert-dismissible fade show mb-4 border-2 border-dark rounded-0 font-monospace" role="alert">
             <strong>ATENCIÓN:</strong> {{ $searchError }}
@@ -11,15 +11,15 @@
         </div>
     @endif
 
-    <!-- DISPOSITIVO POKÉDEX FOLDER PIXEL ART (ROJO FUEGO / GBA) -->
+    <!-- dispositivo pokedex folder pixel art (rojo fuego / gba) -->
     <div class="pokedex-device">
 
         <!-- ============================================== -->
-        <!-- PANEL IZQUIERDO: SELECTOR DE POKÉMON          -->
+        <!-- panel izquierdo: selector de pokemon          -->
         <!-- ============================================== -->
         <div class="pokedex-panel-left">
 
-            <!-- Luces e indicadores pixel art -->
+            <!-- luces e indicadores pixel art -->
             <div class="pokedex-header-lights">
                 <div class="camera-lens" id="cameraLens" title="Sensor principal Pokédex"></div>
                 <div class="led-lights">
@@ -29,16 +29,16 @@
                 </div>
             </div>
 
-            <!-- Marco de la pantalla izquierda -->
+            <!-- marco de la pantalla izquierda -->
             <div class="pokedex-screen-frame">
                 <div class="screen-frame-dots">
                     <span class="screen-frame-dot"></span>
                     <span class="screen-frame-dot"></span>
                 </div>
 
-                <!-- Pantalla interna estilo LCD -->
+                <!-- pantalla interna estilo lcd -->
                 <div class="pokedex-inner-screen">
-                    <!-- Formulario y buscador de Pokémon -->
+                    <!-- formulario y buscador de pokemon -->
                     <div class="pokedex-search-box">
                         <form action="{{ route('pokemon.index') }}" method="GET" id="searchForm" class="d-flex gap-2">
                             <input 
@@ -56,7 +56,7 @@
                         </form>
                     </div>
 
-                    <!-- Lista de los 20 Pokémon con sprites de 3ra generación -->
+                    <!-- lista de los 20 pokemon con sprites de 3ra generacion -->
                     <div class="pokemon-select-list" id="pokemonList">
                         @foreach ($pokemons as $p)
                             <a 
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <!-- Controles físicos inferiores pixel art -->
+            <!-- controles fisicos inferiores pixel art -->
             <div class="pokedex-controls">
                 <div class="action-circle-btn" title="Botón de acción"></div>
                 <div class="action-pill-buttons">
@@ -104,7 +104,7 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- BISAGRA CENTRAL PIXEL ART                     -->
+        <!-- bisagra central pixel art                     -->
         <!-- ============================================== -->
         <div class="pokedex-hinge">
             <div class="hinge-segment"></div>
@@ -114,11 +114,11 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- PANEL DERECHO: PANTALLA ROJO FUEGO            -->
+        <!-- panel derecho: pantalla rojo fuego            -->
         <!-- ============================================== -->
         <div class="pokedex-panel-right">
 
-            <!-- Pantalla superior: Sprite e identificación -->
+            <!-- pantalla superior: sprite e identificacion -->
             <div class="pokedex-info-screen">
                 <div class="pokemon-display-header">
                     <h3 class="pokemon-display-title" id="displayPokemonName">
@@ -144,7 +144,7 @@
                             {{ $activePokemon['genus'] }}
                         </div>
 
-                        <!-- Tipos elementales traducidos al español -->
+                        <!-- tipos elementales traducidos al espanol -->
                         <div class="pokemon-types-list" id="displayPokemonTypes">
                             @foreach ($activePokemon['types'] as $type)
                                 <span class="pixel-type-badge badge-type-{{ strtolower($type['key']) }}">
@@ -153,7 +153,7 @@
                             @endforeach
                         </div>
 
-                        <!-- Dimensiones físicas -->
+                        <!-- dimensiones fisicas -->
                         <div class="pokemon-dimensions-grid">
                             <div class="dimension-box">
                                 <small>ALTURA</small>
@@ -168,7 +168,7 @@
                 </div>
             </div>
 
-            <!-- Pantalla verde LCD: Descripción exclusivamente en español de Rojo Fuego -->
+            <!-- pantalla verde lcd: descripcion exclusivamente en espanol de rojo fuego -->
             <div class="firered-screen">
                 <span class="firered-screen-badge">DATOS POKÉDEX (ROJO FUEGO)</span>
                 <p class="firered-text" id="displayPokemonDesc">
@@ -176,11 +176,11 @@
                 </p>
             </div>
 
-            <!-- Monitor de estadísticas base de combate pixel art -->
+            <!-- monitor de estadisticas base de combate pixel art -->
             <div class="pokedex-stats-screen">
                 <div class="stats-title">ESTADÍSTICAS BASE</div>
 
-                <!-- Puntos de Salud (HP) -->
+                <!-- puntos de salud (hp) -->
                 <div class="stat-row">
                     <div class="stat-label-group">
                         <span>PS (HP)</span>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
 
-                <!-- Ataque (Attack) -->
+                <!-- ataque (attack) -->
                 <div class="stat-row">
                     <div class="stat-label-group">
                         <span>ATAQUE</span>
@@ -210,7 +210,7 @@
                     </div>
                 </div>
 
-                <!-- Defensa (Defense) -->
+                <!-- defensa (defense) -->
                 <div class="stat-row">
                     <div class="stat-label-group">
                         <span>DEFENSA</span>
@@ -225,7 +225,7 @@
                     </div>
                 </div>
 
-                <!-- Estadísticas secundarias -->
+                <!-- estadisticas secundarias -->
                 <div class="stat-secondary-grid">
                     <span>ATQ.ESP: <strong id="displaySpAtkVal">{{ $activePokemon['stats']['special_attack'] }}</strong></span>
                     <span>DEF.ESP: <strong id="displaySpDefVal">{{ $activePokemon['stats']['special_defense'] }}</strong></span>
@@ -233,7 +233,7 @@
                 </div>
             </div>
 
-            <!-- Teclado numérico pixel art (10 teclas azules) -->
+            <!-- teclado numerico pixel art (10 teclas azules) -->
             <div class="pokedex-keypad">
                 <button class="keypad-key" type="button" onclick="keypadTone()"></button>
                 <button class="keypad-key" type="button" onclick="keypadTone()"></button>
@@ -253,9 +253,9 @@
 
 </div>
 
-<!-- SCRIPT DE INTERACCIÓN ASÍNCRONA DE LA POKÉDEX -->
+<!-- script de interaccion asincrona de la pokedex -->
 <script>
-    // Filtro instantáneo para el buscador de la lista
+    // filtro instantaneo para el buscador de la lista
     const searchInput = document.getElementById('searchInput');
     const pokemonItems = document.querySelectorAll('.pokemon-select-item');
 
@@ -274,7 +274,7 @@
         });
     });
 
-    // Actualización dinámica del panel derecho al hacer clic
+    // actualizacion dinamica del panel derecho al hacer clic
     async function selectPokemon(event, pokemonName) {
         if (event) event.preventDefault();
 
@@ -307,7 +307,7 @@
         }
     }
 
-    // Renderiza los datos en la pantalla derecha
+    // renderiza los datos en la pantalla derecha
     function updateRightPanel(p) {
         document.getElementById('displayPokemonName').textContent = p.name;
         document.getElementById('displayPokemonId').textContent = '#' + String(p.id).padStart(3, '0');
@@ -317,7 +317,7 @@
         document.getElementById('displayPokemonHeight').textContent = p.height + ' M';
         document.getElementById('displayPokemonWeight').textContent = p.weight + ' KG';
 
-        // Tipos elementales
+        // tipos elementales
         const typesContainer = document.getElementById('displayPokemonTypes');
         typesContainer.innerHTML = '';
         p.types.forEach(t => {
@@ -327,10 +327,10 @@
             typesContainer.appendChild(badge);
         });
 
-        // Descripción exclusivamente en español
+        // descripcion exclusivamente en espanol
         document.getElementById('displayPokemonDesc').textContent = p.description;
 
-        // Estadísticas base
+        // estadisticas base
         document.getElementById('displayHpVal').textContent = p.stats.hp;
         document.getElementById('displayHpBar').style.width = Math.min(100, (p.stats.hp / 255) * 100) + '%';
 

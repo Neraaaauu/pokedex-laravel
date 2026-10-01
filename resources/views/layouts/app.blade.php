@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Pokédex') }} - Unidad III</title>
-    <!-- Bootstrap 5.3 CDN -->
+    <!-- bootstrap 5.3 cdn -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Pokédex Kanto Custom Style -->
+    <!-- pokedex kanto custom style -->
     <link href="{{ asset('css/pokedex.css') }}" rel="stylesheet">
 
     <style>
@@ -32,7 +32,7 @@
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Barra de navegación -->
+    <!-- barra de navegacion -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ route('home') }}">Pokédex Web</a>
@@ -55,19 +55,19 @@
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+    <!-- contenido principal -->
     <main class="container my-5 flex-grow-1">
         @yield('content')
     </main>
 
-    <!-- Pie de página -->
+    <!-- pie de pagina -->
     <footer class="bg-white border-top py-3 mt-auto text-center text-muted small">
         <div class="container">
             <span>Proyecto Pokédex Web &bull; Unidad III &bull; Herramientas para acelerar la construcción de software</span>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- bootstrap js bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

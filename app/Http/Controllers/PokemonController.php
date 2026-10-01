@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 class PokemonController extends Controller
 {
     /**
-     * Mapeo de tipos en español para la Pokédex retro.
+     * mapeo de tipos en espanol para la pokedex retro.
      */
     private const TYPE_TRANSLATIONS = [
         'normal' => 'NORMAL',
@@ -32,26 +32,26 @@ class PokemonController extends Controller
     ];
 
     /**
-     * Muestra la Pokédex Pixel Art con los 20 Pokémon requeridos de la 1ra generación,
-     * usando sprites de 3ra generación (Rojo Fuego) y descripciones exclusivamente en español.
+     * muestra la pokedex pixel art con los 20 pokemon requeridos de la 1ra generacion,
+     * usando sprites de 3ra generacion (rojo fuego) y descripciones exclusivamente en espanol.
      */
     public function index(Request $request)
     {
         $pokemonList = $this->getPokemonList();
         $searchError = null;
-        $activeName = 'bulbasaur'; // Por defecto iniciamos con Bulbasaur (#001)
+        $activeName = 'bulbasaur'; // por defecto iniciamos con bulbasaur (#001)
 
-        // Validación y procesamiento del buscador
+        // validacion y procesamiento del buscador
         if ($request->has('search')) {
             $rawSearch = $request->query('search');
 
             if ($rawSearch === null || trim($rawSearch) === '') {
-                // Validación obligatoria: no permitir búsqueda vacía
+                // validacion obligatoria: no permitir busqueda vacia
                 $searchError = 'El campo de búsqueda no puede estar vacío. Ingrese el nombre de un Pokémon.';
             } else {
                 $searchQuery = strtolower(trim($rawSearch));
 
-                // Verificamos si existe en el listado de los 20 o en la API
+                // verificamos si existe en el listado de los 20 o en la api
                 $found = $this->findInList($pokemonList, $searchQuery);
                 if ($found) {
                     $activeName = $found;
@@ -81,15 +81,15 @@ class PokemonController extends Controller
     }
 
     /**
-     * Muestra el detalle de un Pokémon específico en la Pokédex.
-     * Si la petición es AJAX/JSON, devuelve el JSON directamente para actualización dinámica.
+     * muestra el detalle de un pokemon especifico en la pokedex.
+     * si la peticion es ajax/json, devuelve el json directamente para actualizacion dinamica.
      */
     public function show(Request $request, $name)
     {
         $normalizedName = strtolower(trim($name));
         $pokemon = $this->fetchPokemonData($normalizedName);
 
-        // Respuesta JSON para actualizar el panel derecho sin recargar página
+        // respuesta json para actualizar el panel derecho sin recargar pagina
         if ($request->expectsJson() || $request->ajax() || $request->query('format') === 'json') {
             if (! $pokemon) {
                 return response()->json([
@@ -100,7 +100,7 @@ class PokemonController extends Controller
             return response()->json($pokemon);
         }
 
-        // Vista de error si no existe en acceso directo
+        // vista de error si no existe en acceso directo
         if (! $pokemon) {
             return response()->view('pokemon.error', [
                 'name' => $name,
@@ -119,7 +119,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * Obtiene la lista de los 20 Pokémon obligatorios con sprites de Rojo Fuego (3ra Generación).
+     * obtiene la lista de los 20 pokemon obligatorios con sprites de rojo fuego (3ra generacion).
      */
     private function getPokemonList(): array
     {
@@ -135,7 +135,7 @@ class PokemonController extends Controller
                         preg_match('/\/pokemon\/(\d+)\//', $item['url'], $matches);
                         $id = isset($matches[1]) ? (int) $matches[1] : null;
 
-                        // Sprite oficial de la 3ra Generación (Pokémon Rojo Fuego / Verde Hoja)
+                        // sprite oficial de la 3ra generacion (pokemon rojo fuego / verde hoja)
                         $sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/{$id}.png";
 
                         $list[] = [
@@ -148,7 +148,7 @@ class PokemonController extends Controller
                     return $list;
                 }
             } catch (\Exception $e) {
-                // Respaldo seguro
+                // respaldo seguro
             }
 
             return $this->getFallback20List();
@@ -156,8 +156,8 @@ class PokemonController extends Controller
     }
 
     /**
-     * Obtiene los datos del Pokémon con sprite de 3ra generación (Rojo Fuego)
-     * y descripción EXCLUSIVAMENTE en español.
+     * obtiene los datos del pokemon con sprite de 3ra generacion (rojo fuego)
+     * y descripcion exclusivamente en espanol.
      */
     private function fetchPokemonData(string $nameOrId): ?array
     {
@@ -167,7 +167,7 @@ class PokemonController extends Controller
             try {
                 $normalized = strtolower(trim($nameOrId));
 
-                // 1. Datos técnicos (tipos, stats, peso, altura)
+                // 1. datos tecnicos (tipos, stats, peso, altura)
                 $pokemonRes = Http::timeout(5)->get("https://pokeapi.co/api/v2/pokemon/{$normalized}");
                 if (! $pokemonRes->successful()) {
                     return null;
@@ -175,10 +175,10 @@ class PokemonController extends Controller
                 $poke = $pokemonRes->json();
                 $id = $poke['id'];
 
-                // Sprite oficial de Rojo Fuego (Gen 3)
+                // sprite oficial de rojo fuego (gen 3)
                 $fireRedSprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/{$id}.png";
 
-                // 2. Descripción exclusivamente en español y categoría
+                // 2. descripcion exclusivamente en espanol y categoria
                 $descriptionEs = 'Información no disponible en este momento.';
                 $genusEs = 'Pokémon de Kanto';
 
@@ -186,7 +186,7 @@ class PokemonController extends Controller
                 if ($speciesRes->successful()) {
                     $species = $speciesRes->json();
 
-                    // Buscar la primera descripción oficial en español
+                    // buscar la primera descripcion oficial en espanol
                     foreach ($species['flavor_text_entries'] as $entry) {
                         if ($entry['language']['name'] === 'es') {
                             $cleanText = preg_replace("/[\f\n\r]+/", ' ', $entry['flavor_text']);
@@ -195,7 +195,7 @@ class PokemonController extends Controller
                         }
                     }
 
-                    // Categoría en español (ej. "Pokémon Semilla", "Pokémon Llama")
+                    // categoria en espanol (ej. "pokemon semilla", "pokemon llama")
                     foreach ($species['genera'] as $g) {
                         if ($g['language']['name'] === 'es') {
                             $genusEs = $g['genus'];
@@ -204,7 +204,7 @@ class PokemonController extends Controller
                     }
                 }
 
-                // Tipos traducidos al español
+                // tipos traducidos al espanol
                 $types = array_map(function ($t) {
                     $typeKey = strtolower($t['type']['name']);
 
@@ -239,7 +239,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * Busca por nombre o número en la lista.
+     * busca por nombre o numero en la lista.
      */
     private function findInList(array $list, string $query): ?string
     {
@@ -254,7 +254,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * Extrae el valor numérico de una estadística.
+     * extrae el valor numerico de una estadistica.
      */
     private function extractStat(array $stats, string $statName): int
     {
@@ -268,7 +268,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * Respaldo local de los 20 Pokémon con sprites de Rojo Fuego.
+     * respaldo local de los 20 pokemon con sprites de rojo fuego.
      */
     private function getFallback20List(): array
     {
@@ -295,7 +295,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * Respaldo de Bulbasaur con descripción en español.
+     * respaldo de bulbasaur con descripcion en espanol.
      */
     private function getFallbackPokemon(string $name): array
     {

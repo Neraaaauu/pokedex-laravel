@@ -1,7 +1,7 @@
 /* ========================================================
-   POKÉDEX VIRTUAL KANTO (PIXEL ART RETRO GBA / ROJO FUEGO)
-   Estética 100% Pixel Art inspirada en Pokémon Rojo Fuego
-   y la clásica Pokédex de la serie de televisión
+   pokedex virtual kanto (pixel art retro gba / rojo fuego)
+   estetica 100% pixel art inspirada en pokemon rojo fuego
+   y la clasica pokedex de la serie de television
    ======================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -22,7 +22,7 @@
     --pixel-font: 'Press Start 2P', 'Courier New', monospace;
 }
 
-/* Base del wrapper */
+/* base del wrapper */
 .pokedex-wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -32,7 +32,7 @@
 }
 
 /* ========================================================
-   CONTENEDOR DE LA POKÉDEX FOLDER (PIXEL ART)
+   contenedor de la pokedex folder (pixel art)
    ======================================================== */
 .pokedex-device {
     display: flex;
@@ -52,7 +52,7 @@
 }
 
 /* ========================================================
-   PANEL IZQUIERDO (SELECTOR DE POKÉMON)
+   panel izquierdo (selector de pokemon)
    ======================================================== */
 .pokedex-panel-left {
     flex: 1;
@@ -71,7 +71,7 @@
     }
 }
 
-/* Luces pixel art superiores */
+/* luces pixel art superiores */
 .pokedex-header-lights {
     display: flex;
     align-items: center;
@@ -81,7 +81,7 @@
     border-bottom: 6px solid var(--pixel-dark-red);
 }
 
-/* Sensor cámara pixel art */
+/* sensor camara pixel art */
 .camera-lens {
     width: 60px;
     height: 60px;
@@ -116,7 +116,7 @@
     100% { background: #48c8f0; }
 }
 
-/* Luces LED pixel art */
+/* luces led pixel art */
 .led-lights {
     display: flex;
     gap: 12px;
@@ -145,7 +145,7 @@
 .led-yellow { background: #f8c800; }
 .led-green { background: #38b038; }
 
-/* Marco de la pantalla izquierda */
+/* marco de la pantalla izquierda */
 .pokedex-screen-frame {
     background: #d8d8d8;
     border: 6px solid var(--pixel-black);
@@ -167,7 +167,7 @@
     border: 2px solid var(--pixel-black);
 }
 
-/* Pantalla interna izquierda (terminal pixel art) */
+/* pantalla interna izquierda (terminal pixel art) */
 .pokedex-inner-screen {
     background: #081018;
     border: 4px solid var(--pixel-black);
@@ -177,7 +177,7 @@
     background-size: 100% 4px;
 }
 
-/* Buscador en pantalla */
+/* buscador en pantalla */
 .pokedex-search-box {
     margin-bottom: 10px;
 }
@@ -216,7 +216,7 @@
     box-shadow: none;
 }
 
-/* Lista seleccionable de los 20 Pokémon */
+/* lista seleccionable de los 20 pokemon */
 .pokemon-select-list {
     max-height: 400px;
     overflow-y: auto;
@@ -310,7 +310,7 @@
     color: #000000;
 }
 
-/* Controles físicos inferiores pixel art */
+/* controles fisicos inferiores pixel art */
 .pokedex-controls {
     display: flex;
     justify-content: space-between;
@@ -343,7 +343,7 @@
 .pill-red { background: #d02030; }
 .pill-blue { background: #2060c0; }
 
-/* D-Pad Pixel Art */
+/* d-pad pixel art */
 .dpad {
     position: relative;
     width: 76px;
@@ -382,7 +382,7 @@
 }
 
 /* ========================================================
-   BISAGRA CENTRAL PIXEL ART
+   bisagra central pixel art
    ======================================================== */
 .pokedex-hinge {
     width: 44px;
@@ -421,7 +421,7 @@
 }
 
 /* ========================================================
-   PANEL DERECHO: PANTALLA ROJO FUEGO (PIXEL ART)
+   panel derecho: pantalla rojo fuego (pixel art)
    ======================================================== */
 .pokedex-panel-right {
     flex: 1.15;
@@ -439,7 +439,7 @@
     }
 }
 
-/* Pantalla superior derecha: Sprite e información técnica */
+/* pantalla superior derecha: sprite e informacion tecnica */
 .pokedex-info-screen {
     background: #081018;
     border: 6px solid var(--pixel-black);
@@ -486,7 +486,7 @@
     }
 }
 
-/* Contenedor del sprite de 3ra generación */
+/* contenedor del sprite de 3ra generacion */
 .pokemon-artwork-container {
     background: #182838;
     border: 4px solid var(--pixel-black);
@@ -556,7 +556,7 @@
     margin-bottom: 2px;
 }
 
-/* Pantalla verde LCD: Descripción 100% en español de Rojo Fuego */
+/* pantalla verde lcd: descripcion 100% en espanol de rojo fuego */
 .firered-screen {
     background: var(--pixel-lcd-green);
     border: 6px solid var(--pixel-black);
@@ -585,7 +585,7 @@
     font-family: var(--pixel-font);
 }
 
-/* Monitor de estadísticas de combate pixel art */
+/* monitor de estadisticas de combate pixel art */
 .pokedex-stats-screen {
     background: #081018;
     border: 6px solid var(--pixel-black);
@@ -642,7 +642,7 @@
     color: #ffffff;
 }
 
-/* Teclado numérico pixel art (10 teclas azules) */
+/* teclado numerico pixel art (10 teclas azules) */
 .pokedex-keypad {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -663,7 +663,7 @@
     box-shadow: inset -2px -2px 0px #68b0f8, inset 2px 2px 0px #104088;
 }
 
-/* Colores Pixel Art para los tipos elementales */
+/* colores pixel art para los tipos elementales */
 .badge-type-grass { background-color: #58a838; }
 .badge-type-fire { background-color: #f06020; }
 .badge-type-water { background-color: #3888d8; }

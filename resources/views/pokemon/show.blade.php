@@ -15,7 +15,7 @@
 
             <div class="card-body p-4 p-md-5">
                 <div class="row align-items-center mb-4">
-                    <!-- Imagen del Pokémon -->
+                    <!-- imagen del pokemon -->
                     <div class="col-md-5 text-center mb-4 mb-md-0">
                         <div class="bg-light border rounded p-4 d-flex align-items-center justify-content-center mx-auto" style="min-height: 250px;">
                             <img 
@@ -33,7 +33,7 @@
                         @endif
                     </div>
 
-                    <!-- Datos y Tipos -->
+                    <!-- datos y tipos -->
                     <div class="col-md-7">
                         @if (!empty($pokemon['genus']))
                             <div class="text-muted fw-bold text-uppercase small mb-2">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <!-- Entrada de la Pokédex: Edición Rojo Fuego -->
+                <!-- entrada de la pokedex: edicion rojo fuego -->
                 @if (!empty($pokemon['description_firered']))
                     <div class="p-3 mb-4 rounded border" style="background-color: #f8fafc; border-left: 4px solid #dc2626 !important;">
                         <span class="badge bg-danger text-uppercase mb-2">Edición Rojo Fuego</span>
@@ -86,11 +86,11 @@
 
                 <hr class="my-4">
 
-                <!-- Estadísticas Base -->
+                <!-- estadisticas base -->
                 <div>
                     <h4 class="fw-bold mb-3">Estadísticas Base</h4>
 
-                    <!-- HP -->
+                    <!-- hp -->
                     <div class="mb-3">
                         <div class="d-flex justify-content-between mb-1">
                             <span class="fw-semibold">Puntos de Salud (HP)</span>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <!-- Attack -->
+                    <!-- attack -->
                     <div class="mb-3">
                         <div class="d-flex justify-content-between mb-1">
                             <span class="fw-semibold">Ataque (Attack)</span>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
 
-                    <!-- Defense -->
+                    <!-- defense -->
                     <div class="mb-3">
                         <div class="d-flex justify-content-between mb-1">
                             <span class="fw-semibold">Defensa (Defense)</span>
@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                    <!-- Estadísticas secundarias -->
+                    <!-- estadisticas secundarias -->
                     <div class="row g-2 mt-2 pt-2 border-top">
                         <div class="col-4 text-center">
                             <span class="text-muted small d-block">Atq. Especial</span>
